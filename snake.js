@@ -7,14 +7,19 @@ const ctx = canvas.getContext("2d")
 
 // Player
 const snakeSize = 50
+
 let snakeSpeed = 5
 let snakePosX = 0
 let snakePosY = canvas.height / 2 - snakeSize / 2
 
+let velocityX = 1
+let velocityY = 0
 
+
+// loop
 function gameLoop() {
     drawStuff()
-    // moveStuff()
+    moveStuff()
 
     requestAnimationFrame(gameLoop)
 }
@@ -26,14 +31,25 @@ gameLoop()
  *  MOVE EVERYTHING
  */
 function moveStuff() {
-    snakePosX += snakeSpeed
+    snakePosX += snakeSpeed * velocityX
+    snakePosY += snakeSpeed * velocityY
+
     if (snakePosX > canvas.width) {
         snakePosX = 0
+    }
+    if (snakePosX < -snakeSize) {
+        snakePosX = canvas.width
+    }
+    if (snakePosY > canvas.height) {
+        snakePosY = 0
+    }
+    if (snakePosY < - snakeSize) {
+        snakePosY = canvas.height
     }
 }
 
 /**
- *  DRAW EVERYTHING
+ *  DRAW EVERYTHING  
  */
 function drawStuff() {
     rectangle("white", 0, 0, canvas.width, canvas.height)
@@ -54,16 +70,29 @@ function rectangle(color, x, y, width, height) {
 function keyPush(event) {
     switch (event.key) {
         case "ArrowLeft":
-            snakePosX -= snakeSpeed
+            if (velocityX !== 1) {
+                velocityX = -1
+                velocityY = 0
+            }
             break
         case "ArrowUp":
-            snakePosY -= snakeSpeed
+            if (velocityY !== 1) {
+                velocityX = 0
+                velocityY = -1
+            }
             break
         case "ArrowRight":
-            snakePosX += snakeSpeed
+            if (velocityX !== -1) {
+
+                velocityX = 1
+                velocityY = 0
+            }
             break
         case "ArrowDown":
-            snakePosY += snakeSpeed
+            if (velocityY !== -1) {
+                velocityX = 0
+                velocityY = 1
+            }
             break
     }
 }
