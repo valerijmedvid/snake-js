@@ -6,7 +6,7 @@ Small project for writing something in **vanilla JS** and test **GitHub actions*
 Made according to [youtube](https://www.youtube.com/watch?v=D-dtyO44ANA) 
 
 
-PLAY ON [https://snake.vmedvid.cz/](http://snake.vmedvid.cz/)
+PLAY ON [snake.vmedvid.cz](https://snake.vmedvid.cz/)
 
 
 Preview:
